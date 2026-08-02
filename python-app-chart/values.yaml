@@ -2,7 +2,7 @@ replicaCount: 3
 image:
   repository: yvitex7/python-app
   pullPolicy: IfNotPresent
-  tag: 880d9e
+  tag: c383ed
 imagePullSecrets: []
 nameOverride: ''
 fullnameOverride: ''
