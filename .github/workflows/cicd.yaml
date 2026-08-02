@@ -34,11 +34,13 @@ jobs:
     runs-on: self-hosted
     steps:
       - 
-        name: Replace helm values
-        shell: bash
-        run: |
-          pip install yq
-          yq -Yi '.image.tag = "${{needs.ci.outputs.commit_id}}"' python-app-chart/values.yaml
+        name: Update Helm image tag
+        uses: fjogeleit/yaml-update-action@v0.14.0
+        with:
+          valueFile: 'python-app-chart/values.yaml'
+          propertyPath: 'image.tag'
+          value: ${{ needs.ci.outputs.commit_id }}
+          commitChange: false
           
       - 
         name: Install ArgoCD CLI
