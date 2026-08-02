@@ -46,7 +46,8 @@ jobs:
           value: ${{ needs.ci.outputs.commit_id }}
           commitChange: true
           message: 'chore(cd): update image tag to ${{ needs.ci.outputs.commit_id }} [skip ci]'
-          
+          token: ${{ secrets.G_TOKEN }}
+
       - 
         name: Install ArgoCD CLI
         run: |
