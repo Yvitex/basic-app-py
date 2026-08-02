@@ -2,11 +2,13 @@ name: ci
 
 on:
   push:
+    paths:
+      - src/**
     branch:
       - master
 
 jobs:
-  docker:
+  ci:
     runs-on: ubuntu-latest
     steps:
       - 
@@ -25,3 +27,22 @@ jobs:
         with:
           push: true
           tags: yvitex7/python-app:${{ env.SHORT_SHA }}
+  cd:
+    needs: ci
+    runs-on: self-hosted
+    steps:
+      - 
+      name: Install ArgoCD CLI
+      run: |
+        curl -sSL -o /usr/local/bin/argocd https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+        chmod +x /usr/local/bin/argocd
+      -
+        name: ArgoCD App Sync
+        shell: bash
+        run: |
+          argocd login argocd-server.argocd.svc.cluster.local:443 \
+          --insecure \
+          --grpc-web \
+          --username admin \
+          --password Password
+          argocd app sync
