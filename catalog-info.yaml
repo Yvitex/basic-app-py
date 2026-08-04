@@ -5,6 +5,7 @@ metadata:
   description: Displays time.
   annotations:
     github.com/project-slug: Yvitex/basic-app-py
+    backstage.io/techdocs-ref: dir:.
 
 spec:
   type: service

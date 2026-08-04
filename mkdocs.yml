@@ -1,0 +1,10 @@
+site_name: 'python-app'
+site_description: 'Main documentation for Python App'
+repo_url: https://github.com/Yvitex/basic-app-py
+edit_uri: edit/master/docs
+
+plugins:
+  - techdocs-core
+  - redirects:
+      redirect_maps:
+        'index.md': 'docs/index.md'
